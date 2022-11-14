@@ -40,8 +40,6 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	// retrieve raw from graphql
-
 	sleepDur, err := time.ParseDuration(envVars["RECONCILE_SLEEP_TIME"])
 	if err != nil {
 		log.Fatalln(err)

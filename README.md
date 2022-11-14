@@ -26,6 +26,27 @@ This works in tandem with [gitlab-sync-s3-pull](https://github.com/app-sre/git-p
 * RECONCILE_SLEEP_TIME - time between runs. defaults to 5 minutes (5m)
 * WORKDIR - local directory where io operations will be performed
 
+## Run
+
+```
+docker run -t \
+    -e GRAPHQL_QUERY_FILE=$GRAPHQL_QUERY_FILE \
+    -e GRAPHQL_SERVER=$GRAPHQL_SERVER \
+    -e GRAPHQL_USERNAME=$GRAPHQL_USERNAME \
+    -e GRAPHQL_PASSWORD=$GRAPHQL_PASSWORD \
+    -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+    -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+    -e AWS_REGION=$AWS_REGION \
+    -e AWS_S3_BUCKET=$AWS_S3_BUCKET \
+    -e GITLAB_BASE_URL=$GITLAB_BASE_URL\
+    -e GITLAB_USERNAME=$GITLAB_USERNAME \
+    -e GITLAB_TOKEN=$GITLAB_TOKEN \
+    -e PUBLIC_KEY=$PUBLIC_KEY \
+    -e RECONCILE_SLEEP_TIME=$RECONCILE_SLEEP_TIME \
+    -e WORKDIR=$WORKDIR \
+    quay.io/app-sre/git-partition-sync-producer:latest -dry-run=true -run-once=true
+```
+
 ## Uploaded s3 Object Key Format
 Uploaded keys are base64 encoded. Decoded, the key is a json string with following structure:
 ```
